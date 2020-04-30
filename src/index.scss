@@ -1,0 +1,261 @@
+// Convention: 
+// Component level divs uses classes 
+// Other sub-level elements are to be modified using ".className#id"
+
+//color palette
+$Green: #002b38, #265350, #4d7c69, #73a491, #99cc99;
+$Blue : #003049, #38AECC, #0B132B, #3A506B, #5BC0BE;
+
+$Light:#FCFCFC, #EBEBEB, #0077FF, #333333;
+$Dark:#333333, #434343, #3694FF, #B5B5B5;
+
+$PureBlack:#000000;
+$LessBlack:#121212;
+
+$Background: #222831;
+$Primary: #30475e;
+$Secondary: #f2a365;
+$White: #ececec;
+
+$baseOpacity: 15%;
+
+// Light theme 
+html {
+    height: 100%;
+    // Input panel 
+    --bg: #FCFCFC;
+    --bg-panel: #EBEBEB;
+    --color-headnig: #0077FF;
+    --color-text: #333333;
+    // --upload-btn: $Secondary;
+}
+
+// Dark theme
+html[data-theme='dark']{
+    --bg: #333333;
+    --bg-panel: #434343;
+    --color-headnig: #3694FF;
+    --color-text: #B5B5B5;
+}
+
+body{
+    height: 100%;
+    background-color: var(--bg);
+}
+
+// APP
+#app{
+    height: 100%;
+}
+
+// Home.js 
+#home-main.home{
+    display:flex;
+    flex-direction: column;
+    min-height: 100%;
+    justify-content: center;
+}
+
+#home-main-active.home {
+    display:flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.home-no-graph{
+    align-self: center;
+}
+
+.home #input-select{
+    display: flex;
+}
+
+.home #input-label {
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+    background-color: $Secondary;
+    padding: 5px;
+    border-radius:7px;
+    display: inline-block;
+}
+
+.home #input-label:hover {
+    cursor: pointer;
+}
+
+.home #data-ready-group{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    padding:2%;
+}
+
+.home #main-control-group{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap-reverse;
+}
+
+// InitInputGroup.js 
+.input-panel{
+    width:50%;
+    min-height:400px;
+    align-self: center;
+    background-color: var(--bg-panel);
+    margin: 3em;
+    padding:3em;
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.input-panel #theme-changer{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.input-panel #project-name{
+    flex:1;
+
+    color: var(--color-headnig);
+    text-align: center;
+}
+
+.input-panel #project-description{
+    flex:3;
+
+    color: var(--color-text);
+    padding: 0 10px 0 10px;
+}
+
+.input-panel #theme-changer{
+    flex:2;
+    margin-bottom: 2em;
+    div{
+        width:25%;
+        min-height: 5em;
+        
+    }
+    #light{
+        background-color: #FCFCFC;
+        padding:5px;
+        display: flex;
+        justify-content: center;
+        border-radius: 15px;
+        &:hover{
+            cursor: pointer;
+            box-shadow: 0 0 5px $Secondary;
+        }
+        #inner-default{
+            background-color: #ECECEC;
+            width:100%;
+            margin: 10%;
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+    #dark{
+        background-color: #333333;
+        padding:5px;
+        display:flex;
+        justify-content: center;
+        border-radius: 15px;
+        &:hover{
+            cursor: pointer;
+            box-shadow: 0 0 10px $Secondary;
+        }
+        #inner-dark{
+            background-color: #434343;
+            width: 100%;
+            margin:10%;
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+            justify-content: center;
+            p{
+                color:#B5B5B5;
+            }
+        }
+    }
+}
+
+.input-panel #input-select-panel{
+    display: flex;
+    justify-content: center;
+}
+
+.input-panel #file-label-panel{
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+    background-color: $Secondary;
+    padding: 5px;
+    border-radius:7px;
+    display: inline-block;
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+
+// Range.js
+.range{
+    // flex:1;
+    display:flex;
+    color:var(--color-text)
+}
+
+.range #window-slider {
+    width: 25%;
+}
+
+// WindowInterval.js 
+.window-interval{
+    // flex:1;
+    color: var(--color-text)
+}
+
+// View.js
+#component.view{
+    flex:5;
+    display: flex;
+    flex-direction: column;
+}
+
+.view #line-graph{
+    height:500px;
+}
+
+.view #no-input-div{
+    background-color: var(--bg-panel);
+    flex:1;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+
+// Select.js
+.select{
+    // flex:1;
+    margin-top: auto;
+    color: var(--color-text);
+}
+
+// TRANSITION
+html.transition,
+html.transition *,
+html.transition *:before,
+html.transition *:after {
+    transition: all 750ms !important;
+    transition-delay: 0 !important;
+}
