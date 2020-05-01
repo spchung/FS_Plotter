@@ -3,8 +3,6 @@ function Processor(string){
     var Head = "init";
     var Matrix;
     
-    var CurrDataSetId=1;
-   
     const setData = (string) => {
         STRING = string;
     } //allow calling following methods without params

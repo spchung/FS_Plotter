@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 const Processor = require('../libs/Processor');
 
 const dataProcessor = new Processor();
@@ -7,7 +7,6 @@ function DataSection(props){
     // props: availableFiles(obj{id, fileName}), setData(func)
     const handleOnChange = (e) =>{
         let id = e.target.value;
-        // console.log(id);
         fetch(`api/${id}`, {
             method:'GET',
             headers:{
@@ -16,24 +15,38 @@ function DataSection(props){
         })
         .then(res => res.json())
         .then(JSONdata => {
-            // console.log("Retrieved RAW",JSONdata.data)
             // PROCESS DATA
             dataProcessor.setData(JSONdata.data);
-            // console.log("Retrieved Raw Data",  dataProcessor.getBody(JSONdata.data));
             props.setData({
                 head: dataProcessor.getHead(JSONdata.data),
                 data: dataProcessor.getBody(JSONdata.data),
                 ready : true
             })
         });
+
+        // toggle View.js render status on new file selection. -> return to init meddage
+        props.setArray({
+            states: props.array.states,
+            data: props.array.data,
+            ready:false
+        });
+        
+        // return variable select to default
+        document.getElementById('selector').value='DEFAULT';
+        // return range obj to init 
+        props.setRange({start:0, end:200});
+        // return window-slider to 0
+        document.getElementById('window-slider').value = 0;
     }
 
     return(
-        <div>
-            Choose DataSet:
+        <div id="data-section">
+            <div id="choose-data-set-text">
+                <p>Choose DataSet:</p>
+            </div>
             <select id="data-selector" defaultValue="DEFAULT" onChange={handleOnChange}>
                 <option key="def" value="DEFAULT" disabled> 
-                    Select a variable to plot 
+                    Select Data Set  
                 </option>
                 {props.availableFiles.map( fileObj => (
                     <option key={fileObj.id} value={fileObj.id}>{fileObj.fileName}</option>

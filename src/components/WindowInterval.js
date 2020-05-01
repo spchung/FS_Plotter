@@ -1,7 +1,4 @@
-import React, {useState, useEffect} from 'react';
-import Slider from 'rc-slider';
-import 'rc-slider/assets/index.css';
-const Range = Slider.Range;
+import React, {useState} from 'react';
 
 function WindowInterval(props){
   // props: rangeObj, setRange(), dataReady, maxValue(data length)
@@ -58,13 +55,6 @@ function WindowInterval(props){
     upper.value = null;
   }
 
-  function onSliderChange(value){
-    if(dataReady){
-      const [lower, upper] = value;
-      setRange({start:lower, end:upper});
-    }
-  }
-
   return(
     <div className="window-interval">
         {dataReady ? (
@@ -76,8 +66,6 @@ function WindowInterval(props){
             <input id="upperbound" type="number" onInput={upperBoundChange} min={0} placeholder={range[1]}/>
             <button onClick={handleApply}>Apply</button>
             </div>
-            Window Interval
-            <Range allowCross={false} value={range} onChange={onSliderChange} max={maxValue}/>
           </div>
         ) : (
           null

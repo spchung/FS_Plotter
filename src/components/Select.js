@@ -11,12 +11,7 @@ function Select(props){
             ops.shift("none");
         }
     },[props.variables, props.status]);
-
-    // useEffect(()=>{
-
-    // },[])
-
-
+    
     function selectChange(){
         var e = document.getElementById("selector");
         var selectedVar = e.options[e.selectedIndex].text;

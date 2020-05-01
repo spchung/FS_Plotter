@@ -3,10 +3,9 @@ import View from './View.js';
 import Select from './Select';
 import Range from './Range';
 import DataSection from './DataSets'
-// import RangeSetter from './RangeSetter';
-// import TreeTracker from './TreeTracker';
 import WindowInterval from './WindowInterval';
 import InitInputGroup from './InitInputGroup';
+import RangeInterval from './RangeInterval';
 
 import { FaUpload } from 'react-icons/fa'
 import DBUtils from '../libs/dbUtils';
@@ -18,7 +17,7 @@ const dbUtils = new DBUtils()
 function Home(props){
     // props: dataFileNames, setFileNames();
 
-    var ProcessUtils = new DataProcessor();
+    var dataUtils = new DataProcessor();
     const [_dataObj, setData] = useState({ data:"", head:"", ready:false }); //input dataset 
     const [_select, setSelect] = useState("init");  // variable being displayed
     const [_array, setArray] = useState({states:["init"], data:["init"], ready:false}); // select variable data only
@@ -33,13 +32,26 @@ function Home(props){
             dbUtils.postDataSet(ev.target.result)
 
             // callback
-            ProcessUtils.setData(ev.target.result);
+            dataUtils.setData(ev.target.result);
             setData({   
-                head : ProcessUtils.getHead(),
-                data : ProcessUtils.getBody(),
+                head : dataUtils.getHead(),
+                data : dataUtils.getBody(),
                 ready: true
             });
-            // console.log(_dataObj.data)
+
+            // set array.ready to false on new file upload so View renders welcoming message 
+            setArray({
+                states: _array.states,
+                data: _array.data,
+                ready: false
+            });
+
+            // return variable select to default
+            document.getElementById('selector').value='DEFAULT';
+            // return range obj to init 
+            setRange({start:0, end:200});
+            // return window-slider to 0
+            document.getElementById('window-slider').value = 0;
 
             // change DOM 
             if(!document.getElementById('home-main-active')){
@@ -49,48 +61,23 @@ function Home(props){
 
             //append to FileNameArray
             props.setFileNames(props.dataFileNames.concat({id:dbUtils.exposeId(),fileName:fileToLoad.name}))
+
+            //set DataSection select to newly uploaded file
+            document.getElementById('data-selector').value = dbUtils.exposeId();
             
         }
         reader.readAsText(fileToLoad)
     }
 
-    //dataFileName Update 
-    useEffect(() => {
-        // console.log(props.dataFileNames)
-    }, [props.dataFileNames])
-
-    // set display range
-    const updateSlideVal = function(rangeObj){
-        // val = size of batch 
-        setRange({
-            start: rangeObj.start,
-            end: rangeObj.end
-        });
-    }
-
-    // Data object
-    useEffect(() => {
-        //on Data update
-
-        //set Select to first variable on dataset switch 
-        // setSelect(_dataObj.head[0]);
-
-    },[_dataObj]);
-
     // var select
     useEffect(() => {
         if(_select!=="init"){
             setArray({
-                states: ProcessUtils.query(_dataObj.head, _dataObj.data, _dataObj.head[0]),
-                data: ProcessUtils.query(_dataObj.head, _dataObj.data, _select), 
+                states: dataUtils.query(_dataObj.head, _dataObj.data, _dataObj.head[0]),
+                data: dataUtils.query(_dataObj.head, _dataObj.data, _select), 
                 ready: true});
         }
     },[_select])
-
-    // var range 
-    useEffect(() => {
-        // console.log(_range.start, _range.end);
-    }, [_range])
 
     return(
         <div className="home" id="home-main">
@@ -98,14 +85,25 @@ function Home(props){
                 ( <div id="data-ready-group">
                     <View head={_dataObj.head} array={_array} select={_select} rangeObj={_range}/>
                     <div id="main-control-group">
+                        
                         <Select variables={_dataObj.head} status={_dataObj.ready} setSelect={setSelect}/>
-                        <WindowInterval rangeObj={_range} setRange={setRange} dataReady={_dataObj.ready} maxValue={_array.data.length}/>
-                        <Range dataObj={_dataObj} onUpdate={updateSlideVal} rangeObj={_range} dataArrayLength={_array.data.length} setRange={setRange}/> 
-                        <div id="input-select">
-                            <input name="file" id="file" type ='file' hidden onChange={handleUpload} autoComplete="off"/>
-                            <label htmlFor="file" id="input-label"> <FaUpload/> Choose File </label>
+                        <RangeInterval  rangeObj={_range} setRange={setRange} dataReady={_dataObj.ready} maxValue={_array.data.length}/>
+                        
+                        <div id="range-input-window">
+                            {/* id: range */}
+                            <Range dataObj={_dataObj} setRange={setRange} rangeObj={_range} dataArrayLength={_array.data.length} setRange={setRange}/> 
+                            {/* id: windowInterval */}
+                            <WindowInterval rangeObj={_range} setRange={setRange} dataReady={_dataObj.ready} maxValue={_array.data.length}/>
                         </div>
-                        <DataSection availableFiles={props.dataFileNames} setData={setData}/>
+                        
+                        <div id="input-and-data-section">
+                            <div id="input-select">
+                                <input name="file" id="file" type ='file' hidden onChange={handleUpload} autoComplete="off"/>
+                                <label htmlFor="file" id="input-label"> <FaUpload/> Choose File </label>
+                            </div>
+                            {/* id: "data-section" */}
+                            <DataSection setArray={setArray} array={_array} setRange={setRange} availableFiles={props.dataFileNames} setData={setData}/>
+                        </div>
                     </div>
                   </div>
 

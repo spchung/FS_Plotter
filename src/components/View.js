@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useState} from 'react';
 import useWindowDimensions from '../utils/useWindowDimensions'
 import {Line} from 'react-chartjs-2';
 
@@ -7,33 +7,19 @@ function View(props){
     props: head, array, select, rangeObj
     */
 
-    const [_data, setData] = useState({data:{},ready:false});
+    const [_data, setData] = useState({data:{}, options:{} ,ready:false});
 
-    //get height: 
-    const [windowWidth, windowHeight] = Object.values(useWindowDimensions());
+    // get height: 
+    const windowHeight = useWindowDimensions().height;
 
     // PROP -> listen to change in array or range
     useEffect(() => {
-        if(props.array.ready){
-            setData({
-                data: createDataSet(props.array.data, props.select, props.head, props.array.states, props.rangeObj), 
-                options: createOptions(true, "Iterations"),
-                ready:true
-            });
-        }
+        setData({
+            data: createDataSet(props.array.data, props.select, props.head, props.array.states, props.rangeObj), 
+            options: createOptions(true, "Iterations"),
+            ready: props.array.ready // only render if array is ready
+        });
     },[props.array, props.rangeObj]);
-
-    const options={
-        showLines:false,
-        scales: {
-            xAxes: [{
-                scaleLabel: {
-                    display: true,
-                    labelString: 'probability'
-                }
-            }]
-        }     
-    };
 
     return (
         <div className="view" id="component">
