@@ -22,9 +22,14 @@ function Home(props){
     const [_select, setSelect] = useState("init");  // variable being displayed
     const [_array, setArray] = useState({states:["init"], data:["init"], ready:false}); // select variable data only
     const [_range, setRange] = useState({start:0, end:200}); // number of variables displayed at onece 
+    const [_darkMode, setMode] = useState(false);
+
+    // current file name 
+    const [_currFileName, setFileName] =useState("default");
 
     const handleUpload = () => {
         var fileToLoad = document.getElementById("file").files[0]
+        setFileName(fileToLoad.name);
         var reader = new FileReader();
         reader.onload = (ev) => {
             
@@ -66,10 +71,10 @@ function Home(props){
             document.getElementById('data-selector').value = dbUtils.exposeId();
             
         }
-        reader.readAsText(fileToLoad)
+        reader.readAsText(fileToLoad);
     }
 
-    // var select
+    // variable to plot select
     useEffect(() => {
         if(_select!=="init"){
             setArray({
@@ -83,33 +88,41 @@ function Home(props){
         <div className="home" id="home-main">
             {_dataObj.ready ? 
                 ( <div id="data-ready-group">
-                    <View head={_dataObj.head} array={_array} select={_select} rangeObj={_range}/>
+                    <div id="controls-wrapper">
+                    <View fileName={_currFileName} darkMode={_darkMode} head={_dataObj.head} array={_array} select={_select} rangeObj={_range}/>
                     <div id="main-control-group">
+                        <div id="input-and-data-section">
+                            <div id="input-select">
+                                <input name="file" id="file" type ='file' hidden onChange={handleUpload} autoComplete="off"/>
+                                <label htmlFor="file" id="input-label"> <FaUpload/> Upload Additional File </label>
+                            </div>
+                            &nbsp; &nbsp; &nbsp;
+                            {/* id: "data-section" */}
+                            <DataSection setFileName={setFileName} setArray={setArray} array={_array} setRange={setRange} availableFiles={props.dataFileNames} setData={setData}/>
+                            &nbsp; &nbsp; &nbsp;
+                            <Select variables={_dataObj.head} status={_dataObj.ready} setSelect={setSelect}/>
+                        </div>
                         
-                        <Select variables={_dataObj.head} status={_dataObj.ready} setSelect={setSelect}/>
-                        <RangeInterval  rangeObj={_range} setRange={setRange} dataReady={_dataObj.ready} maxValue={_array.data.length}/>
+                        <div id="range-interval-group">
+                            <p> Range Interval: </p>
+                            <RangeInterval rangeObj={_range} setRange={setRange} dataReady={_dataObj.ready} maxValue={_array.data.length}/>
+                        </div>
                         
                         <div id="range-input-window">
                             {/* id: range */}
-                            <Range dataObj={_dataObj} setRange={setRange} rangeObj={_range} dataArrayLength={_array.data.length} setRange={setRange}/> 
+                            <Range dataObj={_dataObj} setRange={setRange} rangeObj={_range} dataArrayLength={_array.data.length}/> 
                             {/* id: windowInterval */}
                             <WindowInterval rangeObj={_range} setRange={setRange} dataReady={_dataObj.ready} maxValue={_array.data.length}/>
                         </div>
                         
-                        <div id="input-and-data-section">
-                            <div id="input-select">
-                                <input name="file" id="file" type ='file' hidden onChange={handleUpload} autoComplete="off"/>
-                                <label htmlFor="file" id="input-label"> <FaUpload/> Choose File </label>
-                            </div>
-                            {/* id: "data-section" */}
-                            <DataSection setArray={setArray} array={_array} setRange={setRange} availableFiles={props.dataFileNames} setData={setData}/>
-                        </div>
+                        
+                    </div>
                     </div>
                   </div>
 
                 ) : ( 
             
-                <InitInputGroup handleUpload={handleUpload}/> )
+                <InitInputGroup setColorTheme={setMode} handleUpload={handleUpload}/> )
             }
         </div>
     )

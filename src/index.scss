@@ -14,7 +14,7 @@ $LessBlack:#121212;
 
 $Background: #222831;
 $Primary: #30475e;
-$Secondary: #f2a365;
+$Secondary: #65bef2;
 $White: #ececec;
 
 $baseOpacity: 15%;
@@ -25,9 +25,9 @@ html {
     // Input panel 
     --bg: #FCFCFC;
     --bg-panel: #EBEBEB;
-    --color-headnig: #0077FF;
+    --color-headnig: rgb(250, 119, 32);
     --color-text: #333333;
-    // --upload-btn: $Secondary;
+    --file-upload: #f09153;
 }
 
 // Dark theme
@@ -36,11 +36,13 @@ html[data-theme='dark']{
     --bg-panel: #434343;
     --color-headnig: #3694FF;
     --color-text: #B5B5B5;
+    --file-upload: #43a1d8;
 }
 
 body{
     height: 100%;
     background-color: var(--bg);
+    font-family: 'Jost', sans-serif;;
 }
 
 // APP
@@ -76,7 +78,7 @@ body{
     font-size: 15px;
     font-weight: 700;
     color: white;
-    background-color: $Secondary;
+    background-color: var(--file-upload);
     padding: 5px;
     border-radius:7px;
     display: inline-block;
@@ -87,6 +89,7 @@ body{
 }
 
 .home #data-ready-group{
+    // background-color: var(--bg-panel);
     flex:1;
     display: flex;
     flex-direction: column;
@@ -96,20 +99,39 @@ body{
 }
 
 .home #main-control-group{
+    padding: 0 1% 0 1%;
+    margin-top: 1%;
+    border-radius: 5px;
+    background-color: var(--bg-panel);
     flex:1;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap-reverse;
+    #input-and-data-section{
+        display:flex;
+        margin-top: auto;
+        justify-content: flex-start;
+    }
+    #range-interval-group{
+        p{
+            color: var(--color-text);
+            margin:0;
+        }
+    }
+}
+
+.home #controls-wrapper{
+    min-height: -webkit-fill-available;
+    display: flex;
+    flex-direction: column;
 }
 
 //HOME return Styling
-.home #input-and-data-section{
-    display:flex;
-}
 
 .home #range-input-window{
     display:flex;
     max-height: 35px;
+    margin-bottom: auto;
 }
 
 // InitInputGroup.js 
@@ -159,10 +181,11 @@ body{
         padding:5px;
         display: flex;
         justify-content: center;
-        border-radius: 15px;
+        border-radius: 5px;
+        border: solid 1px #303030;
         &:hover{
             cursor: pointer;
-            box-shadow: 0 0 5px $Secondary;
+            box-shadow: 0 0 5px var(--file-upload);
         }
         #inner-default{
             background-color: #ECECEC;
@@ -172,6 +195,7 @@ body{
             text-align: center;
             flex-direction: column;
             justify-content: center;
+            border-radius: 5px;
         }
     }
     #dark{
@@ -179,10 +203,11 @@ body{
         padding:5px;
         display:flex;
         justify-content: center;
-        border-radius: 15px;
+        border-radius: 5px;
+        border: solid 1px #cccccc;
         &:hover{
             cursor: pointer;
-            box-shadow: 0 0 10px $Secondary;
+            box-shadow: 0 0 10px var(--file-upload);
         }
         #inner-dark{
             background-color: #434343;
@@ -192,6 +217,7 @@ body{
             text-align: center;
             flex-direction: column;
             justify-content: center;
+            border-radius: 5px;
             p{
                 color:#B5B5B5;
             }
@@ -208,8 +234,8 @@ body{
     font-size: 15px;
     font-weight: 700;
     color: white;
-    background-color: $Secondary;
-    padding: 5px;
+    background-color: var(--file-upload);
+    padding: 5px 7px 5px 7px;
     border-radius:7px;
     display: inline-block;
     &:hover{
@@ -237,6 +263,7 @@ body{
 
 // WindowInterval.js 
 .window-interval{
+    min-width: 395px;
     flex:1;
     color: var(--color-text);
     display: flex;
@@ -245,17 +272,21 @@ body{
     justify-content: center;
     #lowerbound{
         width:15%;
+        border-radius: 5px;
     }
     #upperbound{
         width:15%;
+        border-radius: 5px;
     }
 }
 
 // View.js
 #component.view{
-    flex:5;
+    background-color: var(--bg-panel);
+    flex:15;
     display: flex;
     flex-direction: column;
+    border-radius: 5px;
 }
 
 .view #line-graph{
@@ -270,25 +301,73 @@ body{
     flex-direction: column;
     text-align: center;
     justify-content: center;
+    border-radius: 5px;
+    div{
+        color: var(--color-text)
+    }
+}
+
+// chartjs canvas 
+canvas#line-graph.chartjs-render-monitor{
+    margin: auto;
 }
 
 // Select.js
 .select{
     // flex:1;
-    margin-top: auto;
     color: var(--color-text);
+    display: flex;
+    #dropdown{
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+    }
 }
 
 //Datasets.js
-#data-section{
+.data-section{
     display: flex;
     align-items: center;
     text-align: center;
+    #choose-data-set-text{
+        p{
+            color: var(--color-text)
+        }
+    }
 }
 
 //Range Interval.js
 .range-interval{
-    display: flex;
+   padding: 0 10px 0 10px;
+}
+
+div.rc-slider-track.rc-slider-track-1{
+    background-color: var(--file-upload);
+}
+
+div.rc-slider-handle.rc-slider-handle-1{
+    background-color: var(--file-upload);
+    border: solid 2px var(--file-upload);
+    
+}
+
+// div.rc-slider-handle.rc-slider-handle-1.rc-slider-handle-dragging.rc-slider-handle-focused{
+//     border-color: var(--file-upload);
+//     box-shadow: 0 0 5px var(--file-upload);
+// }
+// .rc-slider-handle-dragging.rc-slider-handle-dragging.rc-slider-handle-dragging{
+//      background-color: var(--file-upload);
+//     border: solid 2px var(--file-upload);
+// }
+
+div.rc-slider-handle.rc-slider-handle-2{
+    background-color: var(--file-upload);
+    border: solid 2px var(--file-upload);
+}
+
+div.rc-slider-handle.rc-slider-handle-2.rc-slider-handle-dragging{
+    background-color: var(--file-upload);
+    border: solid 2px var(--file-upload);
 }
 
 // TRANSITION

@@ -22,6 +22,11 @@ function DataSection(props){
                 data: dataProcessor.getBody(JSONdata.data),
                 ready : true
             })
+        })
+        .then(()=>{
+            let file = props.availableFiles[id-1];
+            console.log(file.fileName);
+            props.setFileName(file.fileName);
         });
 
         // toggle View.js render status on new file selection. -> return to init meddage
@@ -40,10 +45,11 @@ function DataSection(props){
     }
 
     return(
-        <div id="data-section">
+        <div className="data-section">
             <div id="choose-data-set-text">
                 <p>Choose DataSet:</p>
             </div>
+            &nbsp; 
             <select id="data-selector" defaultValue="DEFAULT" onChange={handleOnChange}>
                 <option key="def" value="DEFAULT" disabled> 
                     Select Data Set  

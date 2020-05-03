@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 
 function Select(props){
     const [ops, setOptions] = useState(["default"]);
+    const text = "Variables: "
 
     useEffect(() => {
         console.log("changing options")
@@ -23,16 +24,17 @@ function Select(props){
     return(
 
         <div className="select">
-        Variable: 
-            <select id="selector" defaultValue="DEFAULT" onChange={selectChange}>
-                <option value="DEFAULT"  disabled> 
-                    Select a variable to plot 
-                </option> 
-                {ops.map(item => (
-                    <option key={item} value={item}>{item}</option>
-                ))}
-            </select>
-            
+            <p>Variables: &nbsp;</p> 
+            <span id="dropdown">
+                <select id="selector" defaultValue="DEFAULT"  onChange={selectChange}>
+                    <option value="DEFAULT"  disabled> 
+                        Select a variable to plot 
+                    </option> 
+                    {ops.map(item => (
+                        <option key={item} name={item} value={item}>{item}</option>
+                    ))}
+                </select>
+            </span>
         </div>
     )
 }

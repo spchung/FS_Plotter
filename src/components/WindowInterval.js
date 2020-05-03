@@ -58,15 +58,19 @@ function WindowInterval(props){
   return(
     <div className="window-interval">
         {dataReady ? (
-          <div>
-            <div id="text-select-display">
-            <label> Showing iteration </label>
-            <input id="lowerbound" type="number" onInput={lowerBoundChange} min={0} placeholder={range[0]}/>
-            <label>to iteration </label>
-            <input id="upperbound" type="number" onInput={upperBoundChange} min={0} placeholder={range[1]}/>
-            <button onClick={handleApply}>Apply</button>
+            <div>
+              <div id="text-select-display">
+              <label> Showing iteration </label> 
+              &nbsp;
+              <input id="lowerbound" type="number" onInput={lowerBoundChange} min={0} placeholder={range[0]}/> 
+              &nbsp;
+              <label>to iteration </label>
+              &nbsp;
+              <input id="upperbound" type="number" onInput={upperBoundChange} min={0} placeholder={range[1]}/>
+              &nbsp;
+              <button onClick={handleApply}>Apply</button>
+              </div>
             </div>
-          </div>
         ) : (
           null
         )}

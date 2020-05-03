@@ -4,9 +4,8 @@ import {Line} from 'react-chartjs-2';
 
 function View(props){
     /*
-    props: head, array, select, rangeObj
+    props: head(array), array(array), select(string), rangeObj({start: , end: }), darkMode(bool), fileName(string)
     */
-
     const [_data, setData] = useState({data:{}, options:{} ,ready:false});
 
     // get height: 
@@ -15,8 +14,8 @@ function View(props){
     // PROP -> listen to change in array or range
     useEffect(() => {
         setData({
-            data: createDataSet(props.array.data, props.select, props.head, props.array.states, props.rangeObj), 
-            options: createOptions(true, "Iterations"),
+            data: createDataSet(props.array.data, props.select, props.head, props.array.states, props.rangeObj, props.darkMode), 
+            options: createOptions(true, "Iterations", props.darkMode, props.fileName),
             ready: props.array.ready // only render if array is ready
         });
     },[props.array, props.rangeObj]);
@@ -24,17 +23,31 @@ function View(props){
     return (
         <div className="view" id="component">
             {_data.ready ? ( 
-                <Line height={windowHeight/7} id="line-graph" data={_data.data} options={_data.options}/>
+                <Line height={windowHeight/8} id="line-graph" data={_data.data} options={_data.options}/>
             ) : (
-                <div id="no-input-div"> <div>Select a variable to plot</div> </div>
+                <div id="no-input-div"> <div>To Plot Variable : Select In {props.fileName}</div> </div>
             )}
         </div>
     );
 };
 
-function createOptions(showLine, xLabel){
+function createOptions(showLine, xLabelName, darkMode, fileName){
+    
+    var fontColor = darkMode ? 'white' : 'grey';
+    const gridColor = darkMode ? '#bababa' : '#3b3b3b';
     return {
-        animation: {
+        title:{
+            display: true,
+            text: fileName,
+            fontColor: fontColor,
+            fontSize: 20
+        },
+        legend:{
+            labels:{
+                fontColor: fontColor
+            }
+        },
+        animation:{
             duration: 0
         },
         showLines: showLine,
@@ -42,21 +55,29 @@ function createOptions(showLine, xLabel){
             xAxes: [{
                 scaleLabel: {
                     display: true,
-                    labelString: xLabel
+                    labelString: xLabelName,
+                    fontSize: 16,
+                    fontColor: fontColor
                 },
                 gridLines : {
                     drawOnChartArea:false,
-                    drawTicks: true
+                    drawTicks: true,
+                    color: gridColor
                 },
                 ticks: {
                     autoSkip: true,
-                    maxTicksLimit: 10
+                    maxTicksLimit: 10,
+                    fontColor: fontColor
                 }
             }],
             yAxes :[{
                 gridLines: {
                     drawOnChartArea:false,
-                    drawTicks: false
+                    drawTicks: false,
+                    color: gridColor
+                },
+                ticks: {
+                    fontColor: fontColor
                 }
             }]
         },
@@ -64,8 +85,11 @@ function createOptions(showLine, xLabel){
     };
 }
 
-function createDataSet(array, select, head, states, rangeObj){
-    // console.log(states);
+function createDataSet(array, select, head, states, rangeObj, darkMode){
+    const darkTheme = ['rgba(101,190,242,1)', 'rgba(240, 249, 255,1)', 'rbga(255,74,74,1)'];
+    const lightTheme = ['rgba(240,145,83,1)', 'rbga(255, 243, 235, 0.5)', 'rbga(0,153,255,1)'];
+    const theme = darkMode? darkTheme : lightTheme;
+    
     const data = {
         labels: states.slice(rangeObj.start,rangeObj.end),
         datasets: [
@@ -73,18 +97,18 @@ function createDataSet(array, select, head, states, rangeObj){
                 label: select,
                 fill: false,
                 lineTension: 0.1,
-                backgroundColor: 'rgba(150,206,180,0.8)',
-                borderColor: 'rgba(255,238,173,1)',
+                backgroundColor: '#00a2ff',
+                borderColor: theme[0],
                 borderCapStyle: 'butt',
                 borderDash: [],
                 borderDashOffset: 0.0,
                 borderJoinStyle: 'miter',
-                pointBorderColor: 'rgba((255,204,92,1)',
-                pointBackgroundColor: 'rgba(255,111,105,1)',
+                pointBorderColor: theme[1],
+                pointBackgroundColor: theme[0],
                 pointBorderWidth: 1,
                 pointHoverRadius: 5,
-                pointHoverBackgroundColor: 'rgba(136,216,176,1)',
-                pointHoverBorderColor: 'rgba(136,216,176,1)',
+                pointHoverBackgroundColor: theme[2],
+                pointHoverBorderColor: theme[2],
                 pointHoverBorderWidth: 2,
                 pointRadius: 3,
                 pointHitRadius: 10,

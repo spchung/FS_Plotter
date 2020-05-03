@@ -47,17 +47,14 @@ router.put('/put', (req, res)=>{
 
 router.post('/check', (req, res)=>{
     let id = req.body.id;
-    console.log(id);
     db.get(`SELECT EXISTS(SELECT 1 FROM plotData WHERE id=? LIMIT 1)`, [id], (err, row)=>{
         if(err){
             return console.log(err);;
         }
         if(row){
-            console.log("yooohooo");
             res.json({"bool": "true"});
         }
         else{
-            console.log("nooooohoooo")
             res.json({"bool":"false"});
         }
         
@@ -67,7 +64,6 @@ router.post('/check', (req, res)=>{
 router.post('/add', (req, res)=>{
     let newid = req.body.id;
     let newData = req.body.data;
-    console.log("add called:", newid);
     if(!newid){
         return console.log("no id");
     };
