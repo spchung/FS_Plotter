@@ -100,7 +100,7 @@ body{
 
 .home #main-control-group{
     padding: 0 1% 0 1%;
-    margin-top: 1%;
+    margin-top: 5px;
     border-radius: 5px;
     background-color: var(--bg-panel);
     flex:1;
@@ -126,12 +126,36 @@ body{
     flex-direction: column;
 }
 
-//HOME return Styling
+.home #statisics-wrapper{
+    background-color: var(--bg-panel);
+    margin-bottom: 5px;
+    margin-top: 5px;
+    border-radius: 5px;
+    padding: 0 1% 0 1%;
+    color: var(--color-text);
+}
 
+//HOME return Styling
 .home #range-input-window{
     display:flex;
     max-height: 35px;
     margin-bottom: auto;
+}
+
+// Stats.js
+.statistics{
+    display: flex;
+    #stat-lines{
+        display: flex;
+        div{
+            display: flex;
+            div{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+        }
+    }
 }
 
 // InitInputGroup.js 
@@ -350,15 +374,6 @@ div.rc-slider-handle.rc-slider-handle-1{
     border: solid 2px var(--file-upload);
     
 }
-
-// div.rc-slider-handle.rc-slider-handle-1.rc-slider-handle-dragging.rc-slider-handle-focused{
-//     border-color: var(--file-upload);
-//     box-shadow: 0 0 5px var(--file-upload);
-// }
-// .rc-slider-handle-dragging.rc-slider-handle-dragging.rc-slider-handle-dragging{
-//      background-color: var(--file-upload);
-//     border: solid 2px var(--file-upload);
-// }
 
 div.rc-slider-handle.rc-slider-handle-2{
     background-color: var(--file-upload);

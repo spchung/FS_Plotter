@@ -2,6 +2,8 @@ function Processor(string){
     var STRING="init";
     var Head = "init";
     var Matrix;
+    var Mean = 0;
+    var Variance = 0;
     
     const setData = (string) => {
         STRING = string;
@@ -31,11 +33,30 @@ function Processor(string){
             return;
         }
 
-        var temp =[];
+        var tempMean = 0;
+
+        var temp = [];
         for(let i=0; i<matrix.length; i++){
-            temp.push(matrix[i][var_index])
+            tempMean += Number(matrix[i][var_index]);
+            temp.push(matrix[i][var_index]);
         }
+
+        Mean = (tempMean/matrix.length).toFixed(4);
+
+        var localVar = 0;
+        for(let i=0; i<matrix.length; i++){
+            localVar += Math.pow((Number(matrix[i][var_index]) - Mean),2)
+        }
+        Variance = (localVar/(matrix.length-1)).toFixed(10);
+       
         return temp;
+    }
+
+    const getStats = () => {
+        return{
+            mean:Mean,
+            variance:Variance
+        };
     }
 
     return {    
@@ -43,6 +64,7 @@ function Processor(string){
         getBody,
         setData,
         query,
+        getStats
     }
 }
 

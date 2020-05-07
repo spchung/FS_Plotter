@@ -11,7 +11,6 @@ function DBUtils(){
     }
 
     const postDataSet = (data) => {
-        console.log("calling api");
         fetch('/api/add', {
             method: 'POST',
             headers: {

@@ -5,7 +5,6 @@ function Select(props){
     const text = "Variables: "
 
     useEffect(() => {
-        console.log("changing options")
         if(props.status){
             // console.log(props.variables)
             setOptions(props.variables.slice(1));

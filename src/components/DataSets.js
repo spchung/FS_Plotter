@@ -25,7 +25,6 @@ function DataSection(props){
         })
         .then(()=>{
             let file = props.availableFiles[id-1];
-            console.log(file.fileName);
             props.setFileName(file.fileName);
         });
 
