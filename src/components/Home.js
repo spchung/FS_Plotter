@@ -25,6 +25,7 @@ function Home(props){
     const [_stats, setStats] = useState({mean:0, variance:0, ready:false}) // stats
     const [_range, setRange] = useState({start:0, end:200}); // number of variables displayed at onece 
     const [_darkMode, setMode] = useState(false);
+    const [_datasets, setDatasets] = useState([]);
 
     // current file name 
     const [_currFileName, setFileName] =useState("default");
@@ -40,6 +41,14 @@ function Home(props){
 
             // callback
             dataUtils.setData(ev.target.result);
+            
+            // store data in state 
+            setDatasets(_datasets.concat({
+                name: fileToLoad.name,
+                head: dataUtils.getHead(),
+                data: dataUtils.getBody()
+            }));
+
             setData({   
                 head : dataUtils.getHead(),
                 data : dataUtils.getBody(),
@@ -113,7 +122,7 @@ function Home(props){
                             </div>
                             &nbsp; &nbsp; &nbsp;
                             {/* id: "data-section" */}
-                            <DataSection setFileName={setFileName} setArray={setArray} array={_array} setRange={setRange} availableFiles={props.dataFileNames} setData={setData}/>
+                            <DataSection dataSets={_datasets} setFileName={setFileName} setArray={setArray} array={_array} setRange={setRange} availableFiles={props.dataFileNames} setData={setData}/>
                             &nbsp; &nbsp; &nbsp;
                             <Select variables={_dataObj.head} status={_dataObj.ready} setSelect={setSelect}/>
                         </div>

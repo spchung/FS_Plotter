@@ -1,38 +1,24 @@
 import React from 'react';
-const Processor = require('../libs/Processor');
-
-const dataProcessor = new Processor();
 
 function DataSection(props){
-    // props: availableFiles(obj{id, fileName}), setData(func)
-    const handleOnChange = (e) =>{
-        let id = e.target.value;
-        fetch(`api/${id}`, {
-            method:'GET',
-            headers:{
-                "Content-Type":"application/json"
-            }
+    // props: availableFiles(obj{id, fileName}), setData(func), dataSets (obj)
+    console.log(props.dataSets)
+
+    const handleOnChangeState = (e) => {
+        let index = e.target.value -1;
+        const currentDataset = props.dataSets[index];
+        props.setData({
+            head: currentDataset.head,
+            data: currentDataset.data,
+            ready: true
         })
-        .then(res => res.json())
-        .then(JSONdata => {
-            // PROCESS DATA
-            dataProcessor.setData(JSONdata.data);
-            props.setData({
-                head: dataProcessor.getHead(JSONdata.data),
-                data: dataProcessor.getBody(JSONdata.data),
-                ready : true
-            })
-        })
-        .then(()=>{
-            let file = props.availableFiles[id-1];
-            props.setFileName(file.fileName);
-        });
+        props.setFileName(currentDataset.name);
 
         // toggle View.js render status on new file selection. -> return to init meddage
         props.setArray({
             states: props.array.states,
             data: props.array.data,
-            ready:false
+            ready: false
         });
         
         // return variable select to default
@@ -49,7 +35,7 @@ function DataSection(props){
                 <p>Choose DataSet:</p>
             </div>
             &nbsp; 
-            <select id="data-selector" defaultValue="DEFAULT" onChange={handleOnChange}>
+            <select id="data-selector" defaultValue="DEFAULT" onChange={handleOnChangeState}>
                 <option key="def" value="DEFAULT" disabled> 
                     Select Data Set  
                 </option>

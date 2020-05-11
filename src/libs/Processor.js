@@ -4,6 +4,7 @@ function Processor(string){
     var Matrix;
     var Mean = 0;
     var Variance = 0;
+    var CurrentId = 0;
     
     const setData = (string) => {
         STRING = string;

@@ -3,7 +3,6 @@ function DBUtils(){
 
     const incrementId = () =>{
         CurrDataSetId+=1;
-        // console.log("incre,emt", CurrDataSetId);
     }
 
     const exposeId = () =>{
@@ -22,7 +21,6 @@ function DBUtils(){
             })
         })
         .then(()=>{ 
-            // console.log(CurrDataSetId, "HENLO");
             incrementId();
         })
         .catch(err=>console.log(err))

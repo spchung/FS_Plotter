@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 
 function Select(props){
     const [ops, setOptions] = useState(["default"]);
-    const text = "Variables: "
+    // const text = "Variables: "
 
     useEffect(() => {
         if(props.status){
