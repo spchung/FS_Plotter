@@ -15,13 +15,10 @@ function Select(props){
     function selectChange(){
         var e = document.getElementById("selector");
         var selectedVar = e.options[e.selectedIndex].text;
-        // console.log(selectedVar);
-
         props.setSelect(selectedVar)
     }
 
     return(
-
         <div className="select">
             <p>Variables: &nbsp;</p> 
             <span id="dropdown">

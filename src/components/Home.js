@@ -9,11 +9,9 @@ import RangeInterval from './RangeInterval';
 import Stats from './Stats';
 
 import { FaUpload } from 'react-icons/fa'
-import DBUtils from '../libs/dbUtils';
 const DataProcessor = require('../libs/Processor');
 
 // declare outside of component becase need to keep track of internal id;
-const dbUtils = new DBUtils()
 const dataUtils = new DataProcessor();
 
 function Home(props){
@@ -21,14 +19,14 @@ function Home(props){
 
     const [_dataObj, setData] = useState({ data:"", head:"", ready:false }); //input dataset 
     const [_select, setSelect] = useState("init");  // variable being displayed
-    const [_array, setArray] = useState({states:["init"], data:["init"], mean:0, ready:false}); // select variable data only
-    const [_stats, setStats] = useState({mean:0, variance:0, ready:false}) // stats
+    const [_array, setArray] = useState({states:["init"], data:["init"], ready:false}); // select variable data only
+    // const [_stats, setStats] = useState({mean:0, variance:0, ready:false}) // stats
     const [_range, setRange] = useState({start:0, end:200}); // number of variables displayed at onece 
     const [_darkMode, setMode] = useState(false);
     const [_datasets, setDatasets] = useState([]);
 
     // current file name 
-    const [_currFileName, setFileName] =useState("default");
+    const [_currFileName, setFileName] = useState("default");
 
     const handleUpload = () => {
         var fileToLoad = document.getElementById("file").files[0]
@@ -36,9 +34,6 @@ function Home(props){
         var reader = new FileReader();
         reader.onload = (ev) => {
             
-            // Post data into db
-            dbUtils.postDataSet(ev.target.result)
-
             // callback
             dataUtils.setData(ev.target.result);
             
@@ -76,10 +71,13 @@ function Home(props){
             }
 
             //append to FileNameArray
-            props.setFileNames(props.dataFileNames.concat({id:dbUtils.exposeId(),fileName:fileToLoad.name}))
+            props.setFileNames(props.dataFileNames.concat({id:dataUtils.exposeIndex(),fileName:fileToLoad.name}))
 
             //set DataSection select to newly uploaded file
-            document.getElementById('data-selector').value = dbUtils.exposeId();
+            document.getElementById('data-selector').value = dataUtils.exposeIndex();
+
+            //increment dataset index by 1
+            dataUtils.incrementIndex();
             
         }
         reader.readAsText(fileToLoad);
@@ -96,21 +94,12 @@ function Home(props){
         }
     },[_select])
 
-    useEffect(()=>{
-        const stats = dataUtils.getStats()
-        setStats({
-            mean: stats.mean,
-            variance: stats.variance,
-            ready:true
-        })
-    },[_array])
-
     return(
         <div className="home" id="home-main">
             {_dataObj.ready ? 
                 ( <div id="data-ready-group">
                     <div id="statisics-wrapper">
-                        <Stats stats={_stats} />
+                        <Stats array={_array} rangeObj={_range}/>
                     </div>
                     <div id="controls-wrapper">
                     <View fileName={_currFileName} darkMode={_darkMode} head={_dataObj.head} array={_array} select={_select} rangeObj={_range}/>

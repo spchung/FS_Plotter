@@ -20,6 +20,11 @@ function Range(props){
         document.getElementById("window-slider").max = slideMax;
     },[props.rangeObj])
 
+    // //stats
+    // function mouseUp(){
+    //     console.log('mouse up')
+    // }
+
     return (
         <div className="range">
             <div id="slide-window-text">

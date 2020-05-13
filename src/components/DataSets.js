@@ -2,7 +2,7 @@ import React from 'react';
 
 function DataSection(props){
     // props: availableFiles(obj{id, fileName}), setData(func), dataSets (obj)
-    console.log(props.dataSets)
+    // console.log(props.dataSets)
 
     const handleOnChangeState = (e) => {
         let index = e.target.value -1;
