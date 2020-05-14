@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 
 var Mean = 0;
 var Variance = 0;
@@ -24,11 +24,24 @@ function Stats(props){
     }
 
     if (props.array.data.length > 1){
-        Mean = mean();
-        Variance = variance();
+        Mean = mean().toFixed(3);
+        Variance = toCustomFit(variance());
     }else{
         Mean = 0;
         Variance = 0;
+    }
+
+    function toCustomFit(num){
+        // trim off additon decimal points after the FIRST THREE NON ZERO numbers
+        if (num > 1) return num.toFixed(3);
+
+        var count = 0
+        var n = num;
+        while (n <= 1){
+            n = n *10;
+            count += 1;
+        }
+        return num.toFixed(count + 2)
     }
     
     return(
