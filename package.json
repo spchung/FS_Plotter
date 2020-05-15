@@ -2,7 +2,7 @@
   "name": "react-express-starter",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/spchung/plotter/Fullstack-plotter",
+  "homepage": "https://github.com/spchung/plotter/FS_Plotter/",
   "dependencies": {
     "chart.js": "^2.9.3",
     "gh-pages": "^2.2.0",

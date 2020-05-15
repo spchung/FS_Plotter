@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/spchung/plotter/Fullstack-plotter/static/css/main.a15c1ff6.chunk.css",
-    "main.js": "/spchung/plotter/Fullstack-plotter/static/js/main.bdc5f538.chunk.js",
-    "main.js.map": "/spchung/plotter/Fullstack-plotter/static/js/main.bdc5f538.chunk.js.map",
-    "runtime-main.js": "/spchung/plotter/Fullstack-plotter/static/js/runtime-main.b5b0c264.js",
-    "runtime-main.js.map": "/spchung/plotter/Fullstack-plotter/static/js/runtime-main.b5b0c264.js.map",
-    "static/css/2.6883e14e.chunk.css": "/spchung/plotter/Fullstack-plotter/static/css/2.6883e14e.chunk.css",
-    "static/js/2.50a0115e.chunk.js": "/spchung/plotter/Fullstack-plotter/static/js/2.50a0115e.chunk.js",
-    "static/js/2.50a0115e.chunk.js.map": "/spchung/plotter/Fullstack-plotter/static/js/2.50a0115e.chunk.js.map",
-    "index.html": "/spchung/plotter/Fullstack-plotter/index.html",
-    "precache-manifest.b3d057c9013e3a2b02651ed354597eaf.js": "/spchung/plotter/Fullstack-plotter/precache-manifest.b3d057c9013e3a2b02651ed354597eaf.js",
-    "service-worker.js": "/spchung/plotter/Fullstack-plotter/service-worker.js",
-    "static/css/2.6883e14e.chunk.css.map": "/spchung/plotter/Fullstack-plotter/static/css/2.6883e14e.chunk.css.map",
-    "static/css/main.a15c1ff6.chunk.css.map": "/spchung/plotter/Fullstack-plotter/static/css/main.a15c1ff6.chunk.css.map",
-    "static/js/2.50a0115e.chunk.js.LICENSE.txt": "/spchung/plotter/Fullstack-plotter/static/js/2.50a0115e.chunk.js.LICENSE.txt"
+    "main.css": "/spchung/plotter/FS_Plotter/static/css/main.a15c1ff6.chunk.css",
+    "main.js": "/spchung/plotter/FS_Plotter/static/js/main.bdc5f538.chunk.js",
+    "main.js.map": "/spchung/plotter/FS_Plotter/static/js/main.bdc5f538.chunk.js.map",
+    "runtime-main.js": "/spchung/plotter/FS_Plotter/static/js/runtime-main.f6145ad7.js",
+    "runtime-main.js.map": "/spchung/plotter/FS_Plotter/static/js/runtime-main.f6145ad7.js.map",
+    "static/css/2.6883e14e.chunk.css": "/spchung/plotter/FS_Plotter/static/css/2.6883e14e.chunk.css",
+    "static/js/2.96e80ae2.chunk.js": "/spchung/plotter/FS_Plotter/static/js/2.96e80ae2.chunk.js",
+    "static/js/2.96e80ae2.chunk.js.map": "/spchung/plotter/FS_Plotter/static/js/2.96e80ae2.chunk.js.map",
+    "index.html": "/spchung/plotter/FS_Plotter/index.html",
+    "precache-manifest.406196e7ad1d1925dbe409de43c25ac7.js": "/spchung/plotter/FS_Plotter/precache-manifest.406196e7ad1d1925dbe409de43c25ac7.js",
+    "service-worker.js": "/spchung/plotter/FS_Plotter/service-worker.js",
+    "static/css/2.6883e14e.chunk.css.map": "/spchung/plotter/FS_Plotter/static/css/2.6883e14e.chunk.css.map",
+    "static/css/main.a15c1ff6.chunk.css.map": "/spchung/plotter/FS_Plotter/static/css/main.a15c1ff6.chunk.css.map",
+    "static/js/2.96e80ae2.chunk.js.LICENSE.txt": "/spchung/plotter/FS_Plotter/static/js/2.96e80ae2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.b5b0c264.js",
+    "static/js/runtime-main.f6145ad7.js",
     "static/css/2.6883e14e.chunk.css",
-    "static/js/2.50a0115e.chunk.js",
+    "static/js/2.96e80ae2.chunk.js",
     "static/css/main.a15c1ff6.chunk.css",
     "static/js/main.bdc5f538.chunk.js"
   ]
