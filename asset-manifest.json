@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/spchung/FS_Plotter/static/css/main.a15c1ff6.chunk.css",
-    "main.js": "/spchung/FS_Plotter/static/js/main.bdc5f538.chunk.js",
-    "main.js.map": "/spchung/FS_Plotter/static/js/main.bdc5f538.chunk.js.map",
-    "runtime-main.js": "/spchung/FS_Plotter/static/js/runtime-main.c199c47f.js",
-    "runtime-main.js.map": "/spchung/FS_Plotter/static/js/runtime-main.c199c47f.js.map",
-    "static/css/2.6883e14e.chunk.css": "/spchung/FS_Plotter/static/css/2.6883e14e.chunk.css",
-    "static/js/2.bdad41cb.chunk.js": "/spchung/FS_Plotter/static/js/2.bdad41cb.chunk.js",
-    "static/js/2.bdad41cb.chunk.js.map": "/spchung/FS_Plotter/static/js/2.bdad41cb.chunk.js.map",
-    "index.html": "/spchung/FS_Plotter/index.html",
-    "precache-manifest.4abfc47683678eae1bee221bb4ae9a6b.js": "/spchung/FS_Plotter/precache-manifest.4abfc47683678eae1bee221bb4ae9a6b.js",
-    "service-worker.js": "/spchung/FS_Plotter/service-worker.js",
-    "static/css/2.6883e14e.chunk.css.map": "/spchung/FS_Plotter/static/css/2.6883e14e.chunk.css.map",
-    "static/css/main.a15c1ff6.chunk.css.map": "/spchung/FS_Plotter/static/css/main.a15c1ff6.chunk.css.map",
-    "static/js/2.bdad41cb.chunk.js.LICENSE.txt": "/spchung/FS_Plotter/static/js/2.bdad41cb.chunk.js.LICENSE.txt"
+    "main.css": "/FS_Plotter/static/css/main.a15c1ff6.chunk.css",
+    "main.js": "/FS_Plotter/static/js/main.bdc5f538.chunk.js",
+    "main.js.map": "/FS_Plotter/static/js/main.bdc5f538.chunk.js.map",
+    "runtime-main.js": "/FS_Plotter/static/js/runtime-main.e7f05255.js",
+    "runtime-main.js.map": "/FS_Plotter/static/js/runtime-main.e7f05255.js.map",
+    "static/css/2.6883e14e.chunk.css": "/FS_Plotter/static/css/2.6883e14e.chunk.css",
+    "static/js/2.64153031.chunk.js": "/FS_Plotter/static/js/2.64153031.chunk.js",
+    "static/js/2.64153031.chunk.js.map": "/FS_Plotter/static/js/2.64153031.chunk.js.map",
+    "index.html": "/FS_Plotter/index.html",
+    "precache-manifest.3925a1b0736a196dfb19ae6c857b1e95.js": "/FS_Plotter/precache-manifest.3925a1b0736a196dfb19ae6c857b1e95.js",
+    "service-worker.js": "/FS_Plotter/service-worker.js",
+    "static/css/2.6883e14e.chunk.css.map": "/FS_Plotter/static/css/2.6883e14e.chunk.css.map",
+    "static/css/main.a15c1ff6.chunk.css.map": "/FS_Plotter/static/css/main.a15c1ff6.chunk.css.map",
+    "static/js/2.64153031.chunk.js.LICENSE.txt": "/FS_Plotter/static/js/2.64153031.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.c199c47f.js",
+    "static/js/runtime-main.e7f05255.js",
     "static/css/2.6883e14e.chunk.css",
-    "static/js/2.bdad41cb.chunk.js",
+    "static/js/2.64153031.chunk.js",
     "static/css/main.a15c1ff6.chunk.css",
     "static/js/main.bdc5f538.chunk.js"
   ]
