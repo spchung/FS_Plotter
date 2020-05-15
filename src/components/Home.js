@@ -20,7 +20,6 @@ function Home(props){
     const [_dataObj, setData] = useState({ data:"", head:"", ready:false }); //input dataset 
     const [_select, setSelect] = useState("init");  // variable being displayed
     const [_array, setArray] = useState({states:["init"], data:["init"], ready:false}); // select variable data only
-    // const [_stats, setStats] = useState({mean:0, variance:0, ready:false}) // stats
     const [_range, setRange] = useState({start:0, end:200}); // number of variables displayed at onece 
     const [_darkMode, setMode] = useState(false);
     const [_datasets, setDatasets] = useState([]);
@@ -71,7 +70,10 @@ function Home(props){
             }
 
             //append to FileNameArray
-            props.setFileNames(props.dataFileNames.concat({id:dataUtils.exposeIndex(),fileName:fileToLoad.name}))
+            props.setFileNames(props.dataFileNames.concat({id:dataUtils.exposeIndex(),fileName:fileToLoad.name}));
+
+            //return _select to 'init'
+            setSelect('init');
 
             //set DataSection select to newly uploaded file
             document.getElementById('data-selector').value = dataUtils.exposeIndex();
@@ -94,12 +96,16 @@ function Home(props){
         }
     },[_select])
 
+    // useEffect(()=>{
+    //     console.log("name change")
+    // },[_currFileName])
+
     return(
         <div className="home" id="home-main">
             {_dataObj.ready ? 
                 ( <div id="data-ready-group">
                     <div id="statisics-wrapper">
-                        <Stats array={_array} rangeObj={_range}/>
+                        <Stats array={_array} rangeObj={_range} select={_select}/>
                     </div>
                     <div id="controls-wrapper">
                     <View fileName={_currFileName} darkMode={_darkMode} head={_dataObj.head} array={_array} select={_select} rangeObj={_range}/>
@@ -111,7 +117,7 @@ function Home(props){
                             </div>
                             &nbsp; &nbsp; &nbsp;
                             {/* id: "data-section" */}
-                            <DataSection dataSets={_datasets} setFileName={setFileName} setArray={setArray} array={_array} setRange={setRange} availableFiles={props.dataFileNames} setData={setData}/>
+                            <DataSection dataSets={_datasets} setSelect={setSelect} setFileName={setFileName} setArray={setArray} array={_array} setRange={setRange} availableFiles={props.dataFileNames} setData={setData}/>
                             &nbsp; &nbsp; &nbsp;
                             <Select variables={_dataObj.head} status={_dataObj.ready} setSelect={setSelect}/>
                         </div>

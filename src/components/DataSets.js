@@ -23,6 +23,8 @@ function DataSection(props){
         
         // return variable select to default
         document.getElementById('selector').value='DEFAULT';
+        // set select back to default
+        props.setSelect("init")
         // return range obj to init 
         props.setRange({start:0, end:200});
         // return window-slider to 0

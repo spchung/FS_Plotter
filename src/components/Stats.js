@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 var Mean = 0;
 var Variance = 0;
@@ -42,6 +42,11 @@ function Stats(props){
             count += 1;
         }
         return num.toFixed(count + 2)
+    }
+
+    if (props.select === 'init'){
+        Mean = 0; 
+        Variance = 0;
     }
     
     return(
