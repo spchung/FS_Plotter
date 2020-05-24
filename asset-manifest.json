@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/FS_Plotter/static/css/main.a15c1ff6.chunk.css",
+    "main.css": "/FS_Plotter/static/css/main.52f3f6de.chunk.css",
     "main.js": "/FS_Plotter/static/js/main.bdc5f538.chunk.js",
     "main.js.map": "/FS_Plotter/static/js/main.bdc5f538.chunk.js.map",
     "runtime-main.js": "/FS_Plotter/static/js/runtime-main.e7f05255.js",
@@ -9,17 +9,17 @@
     "static/js/2.64153031.chunk.js": "/FS_Plotter/static/js/2.64153031.chunk.js",
     "static/js/2.64153031.chunk.js.map": "/FS_Plotter/static/js/2.64153031.chunk.js.map",
     "index.html": "/FS_Plotter/index.html",
-    "precache-manifest.3925a1b0736a196dfb19ae6c857b1e95.js": "/FS_Plotter/precache-manifest.3925a1b0736a196dfb19ae6c857b1e95.js",
+    "precache-manifest.9d37439cb1dd8c4551f267db174039e3.js": "/FS_Plotter/precache-manifest.9d37439cb1dd8c4551f267db174039e3.js",
     "service-worker.js": "/FS_Plotter/service-worker.js",
     "static/css/2.6883e14e.chunk.css.map": "/FS_Plotter/static/css/2.6883e14e.chunk.css.map",
-    "static/css/main.a15c1ff6.chunk.css.map": "/FS_Plotter/static/css/main.a15c1ff6.chunk.css.map",
+    "static/css/main.52f3f6de.chunk.css.map": "/FS_Plotter/static/css/main.52f3f6de.chunk.css.map",
     "static/js/2.64153031.chunk.js.LICENSE.txt": "/FS_Plotter/static/js/2.64153031.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.e7f05255.js",
     "static/css/2.6883e14e.chunk.css",
     "static/js/2.64153031.chunk.js",
-    "static/css/main.a15c1ff6.chunk.css",
+    "static/css/main.52f3f6de.chunk.css",
     "static/js/main.bdc5f538.chunk.js"
   ]
 }
