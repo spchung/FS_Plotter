@@ -121,9 +121,10 @@ body{
 }
 
 .home #controls-wrapper{
-    min-height: -webkit-fill-available;
     display: flex;
     flex-direction: column;
+    flex:1000;
+    min-height: -webkit-fill-available;
 }
 
 .home #statisics-wrapper{
@@ -133,6 +134,7 @@ body{
     border-radius: 5px;
     padding: 0 1% 0 1%;
     color: var(--color-text);
+    flex:1;
 }
 
 //HOME return Styling
@@ -287,7 +289,7 @@ body{
 
 // WindowInterval.js 
 .window-interval{
-    min-width: 395px;
+    min-width: 450px;
     flex:1;
     color: var(--color-text);
     display: flex;
