@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e45d54123f8b764754f209f2a90ceee8",
+    "revision": "84071f9b00abb02f30cc60e4f9eee02c",
     "url": "/FS_Plotter/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/FS_Plotter/static/css/2.6883e14e.chunk.css"
   },
   {
-    "revision": "d5398331f1012d59c3f2",
-    "url": "/FS_Plotter/static/css/main.52f3f6de.chunk.css"
+    "revision": "fe1cadcb9ccb1046dfe4",
+    "url": "/FS_Plotter/static/css/main.b53b6a57.chunk.css"
   },
   {
     "revision": "c2fef279454825759354",
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/FS_Plotter/static/js/2.64153031.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d5398331f1012d59c3f2",
-    "url": "/FS_Plotter/static/js/main.bdc5f538.chunk.js"
+    "revision": "fe1cadcb9ccb1046dfe4",
+    "url": "/FS_Plotter/static/js/main.d1d83648.chunk.js"
   },
   {
     "revision": "3d2ed883759096b2c72b",
