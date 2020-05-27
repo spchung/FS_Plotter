@@ -1,4 +1,6 @@
-import React, {useEffect} from 'react';
+import React from 'react';
+
+// maintain variable outside of function to avoid reset on component rerender -> mutations 
 
 var Mean = 0;
 var Variance = 0;
@@ -17,18 +19,10 @@ function Stats(props){
         
         let sums = targetArray.map( elem =>{
             let diff = Math.pow(Number(elem) - LocalMean,2);
-            return diff
+            return diff;
         })
         let Sum = sums.reduce((a,b)=> Number(a) + Number(b),0)
         return Sum/Number(targetArray.length -1);
-    }
-
-    if (props.array.data.length > 1){
-        Mean = mean().toFixed(3);
-        Variance = toCustomFit(variance());
-    }else{
-        Mean = 0;
-        Variance = 0;
     }
 
     function toCustomFit(num){
@@ -44,6 +38,16 @@ function Stats(props){
         return num.toFixed(count + 2)
     }
 
+    if (props.array.data.length > 1){
+        Mean = mean().toFixed(3);
+        Variance = toCustomFit(variance());
+    }
+    else{
+        Mean = 0;
+        Variance = 0;
+    }
+
+    // if nothing selected -> set stats back to 0 
     if (props.select === 'init'){
         Mean = 0; 
         Variance = 0;

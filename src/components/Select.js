@@ -2,13 +2,12 @@ import React, {useState, useEffect} from 'react';
 
 function Select(props){
     const [ops, setOptions] = useState(["default"]);
-    // const text = "Variables: "
+    // props: variables(array), status(boolean), setSelect(function)
 
+    // populate variable selcetion drop down menu 
     useEffect(() => {
         if(props.status){
-            // console.log(props.variables)
             setOptions(props.variables.slice(1));
-            ops.shift("none");
         }
     },[props.variables, props.status]);
     

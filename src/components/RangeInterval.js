@@ -1,7 +1,13 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 const Range = Slider.Range;
+
+/* Two handle slider
+
+uses thrid party lib rc-slider
+check out https://github.com/schrodinger/rc-slider for more 
+*/
 
 function RangeInterval(props){
     const maxValue = props.maxValue;

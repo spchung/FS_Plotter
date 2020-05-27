@@ -2,6 +2,14 @@ import React, {useEffect, useState} from 'react';
 import useWindowDimensions from '../utils/useWindowDimensions'
 import {Line} from 'react-chartjs-2';
 
+/* Main graph window
+
+Use third party react-chartjs-2 to power the visualization
+
+useWindowDimensions -> specific util function calculating the height of the window 
+The result windowHeight is not very accurate but is responsive -> I found the windowHeight/8 is the best height for the graph relative to the UI
+ */
+
 function View(props){
     /*
     props: head(array), array(array), select(string), rangeObj({start: , end: }), darkMode(bool), fileName(string)

@@ -1,13 +1,12 @@
-import React, {useState} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import Home from './components/Home.js';
 
 
 function App(){
-    const [dataFileNames, setFileNames] = useState([]);
     return(
-        <Home setFileNames={setFileNames} dataFileNames={dataFileNames}/>
+        <Home/>
     )
 }
 

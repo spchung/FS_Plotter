@@ -7,36 +7,39 @@ import WindowInterval from './WindowInterval';
 import InitInputGroup from './InitInputGroup';
 import RangeInterval from './RangeInterval';
 import Stats from './Stats';
-
 import { FaUpload } from 'react-icons/fa'
 const DataProcessor = require('../libs/Processor');
 
-// declare outside of component becase need to keep track of internal id;
+/* home page 
+- Initializes all states and pass down to children 
+- Only prop is prop.dataFileNames -> use to collect names of inputted files.
+*/
+
+// declare outside of component becase need to keep track of internal data;
 const dataUtils = new DataProcessor();
 
 function Home(props){
-    // props: dataFileNames, setFileNames();
-
     const [_dataObj, setData] = useState({ data:"", head:"", ready:false }); //input dataset 
     const [_select, setSelect] = useState("init");  // variable being displayed
-    const [_array, setArray] = useState({states:["init"], data:["init"], ready:false}); // select variable data only
+    const [_array, setArray] = useState({states:["init"], data:["init"], ready:false}); // selected variable data only
     const [_range, setRange] = useState({start:0, end:200}); // number of variables displayed at onece 
-    const [_darkMode, setMode] = useState(false);
-    const [_datasets, setDatasets] = useState([]);
-
-    // current file name 
-    const [_currFileName, setFileName] = useState("default");
+    const [_darkMode, setMode] = useState(false); // toggle dark or light mode 
+    const [_datasets, setDatasets] = useState([]); // array of all dataset data 
+    const [_dataSetNames, setDataSetNames] = useState([]); // names of datasets, used to populate DataSection drop down menu 
+    const [_currFileName, setFileName] = useState("default"); // current selected file name, used for inital display on data set change 
 
     const handleUpload = () => {
+        // Runs ONLY when users upload a new data set
         var fileToLoad = document.getElementById("file").files[0]
         setFileName(fileToLoad.name);
         var reader = new FileReader();
         reader.onload = (ev) => {
             
-            // callback
+            // feed data to the data processor instance 
+            // will keep track of the data set and can be outputted easily 
             dataUtils.setData(ev.target.result);
             
-            // store data in state 
+            // store data in state as an object
             setDatasets(_datasets.concat({
                 name: fileToLoad.name,
                 head: dataUtils.getHead(),
@@ -63,14 +66,8 @@ function Home(props){
             // return window-slider to 0
             document.getElementById('window-slider').value = 0;
 
-            // change DOM 
-            if(!document.getElementById('home-main-active')){
-                const homeDiv = document.getElementById('home-main');
-                homeDiv.id = homeDiv.id + "-active";
-            }
-
             //append to FileNameArray
-            props.setFileNames(props.dataFileNames.concat({id:dataUtils.exposeIndex(),fileName:fileToLoad.name}));
+            setDataSetNames(_dataSetNames.concat({id:dataUtils.exposeIndex(),fileName:fileToLoad.name}));
 
             //return _select to 'init'
             setSelect('init');
@@ -85,7 +82,7 @@ function Home(props){
         reader.readAsText(fileToLoad);
     }
 
-    // variable to plot select
+    // captures new variable array when variable selection changes
     useEffect(() => {
         if(_select!=="init"){
             setArray({
@@ -96,13 +93,13 @@ function Home(props){
         }
     },[_select])
 
-    // useEffect(()=>{
-    //     console.log("name change")
-    // },[_currFileName])
+    // 
 
     return(
         <div className="home" id="home-main">
+        
             {_dataObj.ready ? 
+
                 ( <div id="data-ready-group">
                     <div id="statisics-wrapper">
                         <Stats array={_array} rangeObj={_range} select={_select}/>
@@ -116,8 +113,7 @@ function Home(props){
                                 <label htmlFor="file" id="input-label"> <FaUpload/> Upload Additional File </label>
                             </div>
                             &nbsp; &nbsp; &nbsp;
-                            {/* id: "data-section" */}
-                            <DataSection dataSets={_datasets} setSelect={setSelect} setFileName={setFileName} setArray={setArray} array={_array} setRange={setRange} availableFiles={props.dataFileNames} setData={setData}/>
+                            <DataSection dataSets={_datasets} setSelect={setSelect} setFileName={setFileName} setArray={setArray} array={_array} setRange={setRange} availableFiles={_dataSetNames} setData={setData}/>
                             &nbsp; &nbsp; &nbsp;
                             <Select variables={_dataObj.head} status={_dataObj.ready} setSelect={setSelect}/>
                         </div>
@@ -128,9 +124,7 @@ function Home(props){
                         </div>
                         
                         <div id="range-input-window">
-                            {/* id: range */}
                             <Range dataObj={_dataObj} setRange={setRange} rangeObj={_range} dataArrayLength={_array.data.length}/> 
-                            {/* id: windowInterval */}
                             <WindowInterval rangeObj={_range} setRange={setRange} dataReady={_dataObj.ready} maxValue={_array.data.length}/>
                         </div>
                     </div>
