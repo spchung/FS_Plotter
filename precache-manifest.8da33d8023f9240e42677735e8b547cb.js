@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6f24ad5a73720b7c74a4b9ab42f9138a",
+    "revision": "3c88b118d589ab8e512c22919cd5a250",
     "url": "/FS_Plotter/index.html"
   },
   {
