@@ -93,8 +93,6 @@ function Home(props){
         }
     },[_select])
 
-    // 
-
     return(
         <div className="home" id="home-main">
         
@@ -124,8 +122,14 @@ function Home(props){
                         </div>
                         
                         <div id="range-input-window">
-                            <Range dataObj={_dataObj} setRange={setRange} rangeObj={_range} dataArrayLength={_array.data.length}/> 
-                            <WindowInterval rangeObj={_range} setRange={setRange} dataReady={_dataObj.ready} maxValue={_array.data.length}/>
+                            <Range 
+                                dataObj={_dataObj} 
+                                setRange={setRange} 
+                                rangeObj={_range} 
+                                dataArrayLength={_array.data.length} 
+                                maxValue={_array.data.length} 
+                                dataReady={_dataObj.ready}/> 
+                            {/* <WindowInterval rangeObj={_range} setRange={setRange} dataReady={_dataObj.ready} maxValue={_array.data.length}/> */}
                         </div>
                     </div>
                     </div>
