@@ -3,7 +3,6 @@ import View from './View.js';
 import Select from './Select';
 import Range from './Range';
 import DataSection from './DataSets'
-import WindowInterval from './WindowInterval';
 import InitInputGroup from './InitInputGroup';
 import RangeInterval from './RangeInterval';
 import Stats from './Stats';
@@ -19,6 +18,7 @@ const DataProcessor = require('../libs/Processor');
 const dataUtils = new DataProcessor();
 
 function Home(props){
+    // Collection of states that needs to persist beyond each render
     const [_dataObj, setData] = useState({ data:"", head:"", ready:false }); //input dataset 
     const [_select, setSelect] = useState("init");  // variable being displayed
     const [_array, setArray] = useState({states:["init"], data:["init"], ready:false}); // selected variable data only
@@ -103,35 +103,33 @@ function Home(props){
                         <Stats array={_array} rangeObj={_range} select={_select}/>
                     </div>
                     <div id="controls-wrapper">
-                    <View fileName={_currFileName} darkMode={_darkMode} head={_dataObj.head} array={_array} select={_select} rangeObj={_range}/>
-                    <div id="main-control-group">
-                        <div id="input-and-data-section">
-                            <div id="input-select">
-                                <input name="file" id="file" type ='file' hidden onChange={handleUpload} autoComplete="off"/>
-                                <label htmlFor="file" id="input-label"> <FaUpload/> Upload Additional File </label>
+                        <View fileName={_currFileName} darkMode={_darkMode} head={_dataObj.head} array={_array} select={_select} rangeObj={_range}/>
+                        <div id="main-control-group">
+                            <div id="input-and-data-section">
+                                <div id="input-select">
+                                    <input name="file" id="file" type ='file' hidden onChange={handleUpload} autoComplete="off"/>
+                                    <label htmlFor="file" id="input-label"> <FaUpload/> Upload Additional File </label>
+                                </div>
+                                &nbsp; &nbsp; &nbsp;
+                                <DataSection dataSets={_datasets} setSelect={setSelect} setFileName={setFileName} setArray={setArray} array={_array} setRange={setRange} availableFiles={_dataSetNames} setData={setData}/>
+                                &nbsp; &nbsp; &nbsp;
+                                <Select variables={_dataObj.head} status={_dataObj.ready} setSelect={setSelect}/>
                             </div>
-                            &nbsp; &nbsp; &nbsp;
-                            <DataSection dataSets={_datasets} setSelect={setSelect} setFileName={setFileName} setArray={setArray} array={_array} setRange={setRange} availableFiles={_dataSetNames} setData={setData}/>
-                            &nbsp; &nbsp; &nbsp;
-                            <Select variables={_dataObj.head} status={_dataObj.ready} setSelect={setSelect}/>
-                        </div>
-                        
-                        <div id="range-interval-group">
-                            <p> Range Interval: </p>
-                            <RangeInterval rangeObj={_range} setRange={setRange} dataReady={_dataObj.ready} maxValue={_array.data.length}/>
-                        </div>
-                        
-                        <div id="range-input-window">
-                            <Range 
+                            
+                            <div id="range-interval-group">
+                                <p> Range Interval: </p>
+                                <RangeInterval rangeObj={_range} setRange={setRange} dataReady={_dataObj.ready} maxValue={_array.data.length}/>
+                            </div>
+                            
+                            <Range
                                 dataObj={_dataObj} 
                                 setRange={setRange} 
                                 rangeObj={_range} 
                                 dataArrayLength={_array.data.length} 
                                 maxValue={_array.data.length} 
-                                dataReady={_dataObj.ready}/> 
-                            {/* <WindowInterval rangeObj={_range} setRange={setRange} dataReady={_dataObj.ready} maxValue={_array.data.length}/> */}
+                                dataReady={_dataObj.ready}
+                            /> 
                         </div>
-                    </div>
                     </div>
                   </div>
 

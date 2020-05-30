@@ -1,6 +1,8 @@
 import React from 'react';
 
+// declare component as constant and wrap it in React.forwardRef, which allows the component to take a reference. Must use forwardRef if using functional components
 const WindowInterval = React.forwardRef((props, ref) => {
+
   // props: rangeObj, setRange(), dataReady, maxValue(data length)
   const range = Object.values(props.rangeObj); // -> [lower, upper]
   const maxValue = props.maxValue;
@@ -26,11 +28,9 @@ const WindowInterval = React.forwardRef((props, ref) => {
         return cb({start:lb, end:up});
       }
     }
-    else{
-      console.log('bad')
-    }
   }
 
+  // note the ref on div#text-select-display -> this is the HTML elem that the reference is pointing to in Range.js
   return(
     <div className="window-interval">
         {dataReady ? (
