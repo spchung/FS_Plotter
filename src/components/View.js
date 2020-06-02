@@ -26,11 +26,12 @@ function View(props){
             options: createOptions(true, "Iterations", props.darkMode, props.fileName),
             ready: props.array.ready // only render if array is ready
         });
-    },[props.array, props.rangeObj]);
+    },[props.array, props.rangeObj, props.darkMode, props.fileName, props.head, props.select]);
 
+    // render 'To Plot Variable' screen if select var is at default 'init' -> will need to change if there is a variable that is called 'init'
     return (
         <div className="view" id="component">
-            {_data.ready ? ( 
+            {props.select !== 'init' ? ( 
                 <Line height={windowHeight/8} id="line-graph" data={_data.data} options={_data.options}/>
             ) : (
                 <div id="no-input-div"> <div>To Plot Variable : Select In {props.fileName}</div> </div>
@@ -39,10 +40,14 @@ function View(props){
     );
 };
 
+// To modify the look and specificy of the graphs, modify the following functions
+// Check out https://www.chartjs.org/docs/latest/ for relative documentation 
+
+// creat the option object for charts.js
 function createOptions(showLine, xLabelName, darkMode, fileName){
-    
-    var fontColor = darkMode ? 'white' : 'grey';
+    const fontColor = darkMode ? 'white' : 'grey';
     const gridColor = darkMode ? '#bababa' : '#3b3b3b';
+
     return {
         title:{
             display: true,
@@ -93,6 +98,7 @@ function createOptions(showLine, xLabelName, darkMode, fileName){
     };
 }
 
+// create data set object for charts.js
 function createDataSet(array, select, head, states, rangeObj, darkMode){
     const darkTheme = ['rgba(101,190,242,1)', 'rgba(240, 249, 255,1)', 'rbga(255,74,74,1)'];
     const lightTheme = ['rgba(240,145,83,1)', 'rbga(255, 243, 235, 0.5)', 'rbga(0,153,255,1)'];
@@ -126,5 +132,4 @@ function createDataSet(array, select, head, states, rangeObj, darkMode){
     };
     return data;
 }
-
 export default View;

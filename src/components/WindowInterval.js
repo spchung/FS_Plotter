@@ -13,13 +13,13 @@ const WindowInterval = React.forwardRef((props, ref) => {
     // takes upperbound value if any, else use placeholder
     const upperBound = Number(document.getElementById('upperbound').value) || Number(document.getElementById('upperbound').placeholder); 
     const lowerBound = Number(e.target.value); 
-    evaluateAndUpdate(lowerBound, upperBound, maxValue, setRange);
+    return evaluateAndUpdate(lowerBound, upperBound, maxValue, setRange);
   }
 
   function onUpperBoundChange(e){
     const lowerBound = Number(document.getElementById('lowerbound').value) || Number(document.getElementById('lowerbound').placeholder);
     const upperBound = Number(e.target.value);
-    evaluateAndUpdate(lowerBound, upperBound, maxValue, setRange);
+    return evaluateAndUpdate(lowerBound, upperBound, maxValue, setRange);
   }
 
   function evaluateAndUpdate(lb, up, max, cb){

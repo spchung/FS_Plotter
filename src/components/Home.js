@@ -6,7 +6,7 @@ import DataSection from './DataSets'
 import InitInputGroup from './InitInputGroup';
 import RangeInterval from './RangeInterval';
 import Stats from './Stats';
-import { FaUpload } from 'react-icons/fa'
+import { FaUpload } from 'react-icons/fa'; //file upload icon for upload button
 const DataProcessor = require('../libs/Processor');
 
 /* home page 
@@ -59,26 +59,23 @@ function Home(props){
                 ready: false
             });
 
-            // return variable select to default
+            // return variable select to default -> note a better way to do this is by using forwardRef but in this case this is fine because element 'selector'
+            // will always be mounted before a unser can click on the upload button. Same applies to all the native HTML elemet selections 
             document.getElementById('selector').value='DEFAULT';
             // return range obj to init 
             setRange({start:0, end:200});
             // return window-slider to 0
             document.getElementById('window-slider').value = 0;
-
             //append to FileNameArray
             setDataSetNames(_dataSetNames.concat({id:dataUtils.exposeIndex(),fileName:fileToLoad.name}));
-
             //return _select to 'init'
             setSelect('init');
-
             //set DataSection select to newly uploaded file
             document.getElementById('data-selector').value = dataUtils.exposeIndex();
-
             //increment dataset index by 1
             dataUtils.incrementIndex();
-            
         }
+        // read the actual file, which calls the above function 
         reader.readAsText(fileToLoad);
     }
 
@@ -91,19 +88,29 @@ function Home(props){
                 ready: true
             });
         }
-    },[_select])
+    },[_select, _dataObj])
 
     return(
         <div className="home" id="home-main">
-        
+            {/* conditional rendering -> only render view if there is a dataset present */}
             {_dataObj.ready ? 
-
                 ( <div id="data-ready-group">
                     <div id="statisics-wrapper">
-                        <Stats array={_array} rangeObj={_range} select={_select}/>
+                        <Stats 
+                            array={_array} 
+                            rangeObj={_range} 
+                            select={_select}
+                        />
                     </div>
                     <div id="controls-wrapper">
-                        <View fileName={_currFileName} darkMode={_darkMode} head={_dataObj.head} array={_array} select={_select} rangeObj={_range}/>
+                        <View 
+                            fileName={_currFileName} 
+                            darkMode={_darkMode} 
+                            head={_dataObj.head} 
+                            array={_array} 
+                            select={_select} 
+                            rangeObj={_range}
+                        />
                         <div id="main-control-group">
                             <div id="input-and-data-section">
                                 <div id="input-select">
@@ -111,16 +118,32 @@ function Home(props){
                                     <label htmlFor="file" id="input-label"> <FaUpload/> Upload Additional File </label>
                                 </div>
                                 &nbsp; &nbsp; &nbsp;
-                                <DataSection dataSets={_datasets} setSelect={setSelect} setFileName={setFileName} setArray={setArray} array={_array} setRange={setRange} availableFiles={_dataSetNames} setData={setData}/>
+                                <DataSection 
+                                    dataSets={_datasets} 
+                                    setSelect={setSelect} 
+                                    setFileName={setFileName} 
+                                    setArray={setArray} 
+                                    array={_array} 
+                                    setRange={setRange} 
+                                    availableFiles={_dataSetNames} 
+                                    setData={setData}
+                                />
                                 &nbsp; &nbsp; &nbsp;
-                                <Select variables={_dataObj.head} status={_dataObj.ready} setSelect={setSelect}/>
+                                <Select 
+                                    variables={_dataObj.head} 
+                                    status={_dataObj.ready} 
+                                    setSelect={setSelect}
+                                />
                             </div>
-                            
                             <div id="range-interval-group">
                                 <p> Range Interval: </p>
-                                <RangeInterval rangeObj={_range} setRange={setRange} dataReady={_dataObj.ready} maxValue={_array.data.length}/>
-                            </div>
-                            
+                                <RangeInterval 
+                                    rangeObj={_range} 
+                                    setRange={setRange} 
+                                    dataReady={_dataObj.ready} 
+                                    maxValue={_array.data.length}
+                                />
+                            </div>                            
                             <Range
                                 dataObj={_dataObj} 
                                 setRange={setRange} 

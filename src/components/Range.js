@@ -57,7 +57,13 @@ function Range(props){
                     >
                 </input>
             </div>
-            <WindowInterval ref={intervalRef} rangeObj={props.rangeObj} setRange={props.setRange} dataReady={props.dataReady} maxValue={props.maxValue}/>
+            <WindowInterval 
+                ref={intervalRef} 
+                rangeObj={props.rangeObj} 
+                setRange={props.setRange} 
+                dataReady={props.dataReady} 
+                maxValue={props.maxValue}
+            />
         </div>
     )
 }

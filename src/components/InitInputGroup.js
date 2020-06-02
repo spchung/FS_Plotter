@@ -10,6 +10,8 @@ const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do e
 
 function InitInputGroup(props) {
     //props setColorTheme() -> setting dark or white mode
+
+    // toggles light and dark mode
     function changeTheme(darkTheme){
         if(darkTheme){
             transition();

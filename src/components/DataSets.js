@@ -1,25 +1,23 @@
 import React from 'react';
-
+// Handle switching of data sets
 function DataSection(props){
     // props: availableFiles(obj{id, fileName}), setData(func), dataSets (obj)
-    // console.log(props.dataSets)
-
     const handleOnChangeState = (e) => {
-        let index = e.target.value -1;
+        let index = e.target.value -1; //DataStore index starts at 1 
         const currentDataset = props.dataSets[index];
         props.setData({
             head: currentDataset.head,
             data: currentDataset.data,
             ready: true
         })
+        //update currently selected file
         props.setFileName(currentDataset.name);
-
-        // toggle View.js render status on new file selection. -> return to init meddage
+        // toggle View.js render status on new file selection. -> return to init message
         props.setArray({
             states: props.array.states,
             data: props.array.data,
             ready: false
-        });
+        }); //Note -> while the only property that matters here is array.ready, you can not ignore other properties in a useState set function, else they become null
         
         // return variable select to default
         document.getElementById('selector').value='DEFAULT';

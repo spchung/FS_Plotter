@@ -10,6 +10,7 @@ check out https://github.com/schrodinger/rc-slider for more
 */
 
 function RangeInterval(props){
+    // unpacking props -> optional
     const maxValue = props.maxValue;
     const setRange = props.setRange;
     const dataReady = props.dataReady;
@@ -23,7 +24,12 @@ function RangeInterval(props){
 
     return(
         <div className="range-interval">
-            <Range allowCross={false} value={Object.values(props.rangeObj)} onChange={onSliderChange} max={maxValue}/>
+            <Range 
+                allowCross={false} 
+                value={Object.values(props.rangeObj)} 
+                onChange={onSliderChange} 
+                max={maxValue}
+            />
         </div>
     )
 }
